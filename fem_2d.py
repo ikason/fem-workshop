@@ -56,6 +56,7 @@ def create_gnum(n_el):
         
     return gnum
 
+
 #GENERAL STUFF
 
 #GEOMETRICAL PARAMETERS
@@ -230,11 +231,12 @@ x_ana   =  np.linspace(xmin,xmin+Lx,100)
 T_ana = T_analytical(time, Tmax=100, sigma=1.0, kappa=1.0,x = x_ana)
     
 
+'''
 plt.figure()
 plt.plot(GCOORD,T,'o',color='blue')
 plt.plot(x_ana, T_ana, '-', color='red')
 plt.show()
-
+'''
 
 
     
