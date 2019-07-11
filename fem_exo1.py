@@ -41,6 +41,20 @@ def dN(xsi,i):
     else:
         raise ValueError('Variable i must be 1 or 2')
 
+def create_gnum(n_el):
+    gnum = np.empty((4,n_el))
+
+    num = 0
+    for i in range(0,n_el):
+        if num % 4 == 0:
+            num = num + 1
+        col = np.array([num, num+4, num+5, num+1]).reshape(4,1)
+        np.append(gnum, col, axis=1)
+        num = num + 1
+        
+
+
+
 #GENERAL STUFF
 
 #GEOMETRICAL PARAMETERS
