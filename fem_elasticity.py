@@ -75,6 +75,34 @@ def create_gnum(n_el_x, n_el_y):
         
     return gnum-1
 
+def create_nf(n_nodes,dof):
+#Relationship between nodes and equation numbers (dof is degree of freedom at each node)
+    nf = np.empty((dof,0))
+    num = 1
+    for i in range(0,n_nodes):
+        col = np.array([[num,num+1]]).reshape(2,1)
+        nf = np.append(nf,col,axis=1)
+        num = num+2
+
+    return nf-1
+
+def create_gg   (gnum, nf):
+    n_lines = len(gnum[:,0])*len(nf[:,0])
+    gg = np.empty((n_lines,0))
+
+    for i in range(0,len(gnum[0,:])):
+        col = np.empty((0,1))
+        idxs = gnum[:,i] 
+        for idxs_i in idxs:
+            col = np.append(col,nf[:,idxs_i].reshape((dof,1)),axis=0)
+
+        gg = np.append(gg,col,axis=1)
+
+    return gg
+
+
+
+
 
 #GENERAL STUFF
 
@@ -90,8 +118,9 @@ Ly = 20 #length of model in direction y
 #NUMERICAL PARAMETERS
 
 dim = 2 #dimension
-n_el_x = 20#number of elements in a row
-n_el_y = 20 #number of elements in a column
+dof = 2 #degree of freedom at nodes
+n_el_x = 3#number of elements in a row
+n_el_y = 3 #number of elements in a column
 
 el_tot = n_el_x * n_el_y #total number of elements              #elements total
 n_nodes_x = n_el_x + 1 #number of nodes in a row
@@ -99,6 +128,11 @@ n_nodes_y = n_el_y + 1 #number of nodes in a column
 n_per_el	=	4 #nodes per element
 
 n_nodes_tot = n_nodes_x*n_nodes_y
+
+
+
+
+'''
     
 #CREATE NUMERICAL GRID
 GCOORD = np.empty((0,n_nodes_tot))
@@ -235,7 +269,7 @@ plt.figure()
 plt.contourf(xv,yv,T)
 plt.colorbar()
 plt.show()
-
+'''
 
 
     
