@@ -59,8 +59,8 @@ def create_gnum(n_el):
 #GENERAL STUFF
 
 #GEOMETRICAL PARAMETERS
-xmin = -20
-Lx	=	50                                 #length of model [m]
+xmin = 0
+Lx	= 20                                 #length of model [m]
     
 #PHYSICAL PARAMETERS
 #kappa	=	1.0                                 # thermal diffusivity [m2/s]
@@ -98,14 +98,14 @@ for i in range(0,len(GCOORD)):
 
 
 dt = 0.5
-t_final = 40.0
+t_final = 50.0
 	
 #LOCAL-TO-GLOBAL MAPPING
 EL_N    =   np.array([np.linspace(0,el_tot-1,el_tot,dtype=int),np.linspace(1,el_tot,el_tot,dtype=int)])    #relates local to global node numbers per element
 	
 #BOUNDARY CONDITIONS
 bc_dof  =   np.array([   0 , el_tot], dtype=int)   #dof's to which Dirichlet bc's are assigned
-bc_val  =   np.array([   0.0, 0.0   ])     # value for these dof's
+bc_val  =   np.array([   100.0, 100.0   ])     # value for these dof's
     
 #INITIALIZATION OF ALL KINDS OF STUFF
 LG	=	np.zeros((n_tot,n_tot))   #global stiffness matrix
